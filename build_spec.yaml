@@ -1,0 +1,43 @@
+version: 0.1
+component: build
+timeoutInSeconds: 6000
+runAs: root
+shell: bash
+env:
+  variables:
+    "testEnv" : "testValue"
+
+steps:
+  - type: Command
+    name: "Build Source"
+    command: |
+      echo $testEnv
+      mvn clean test
+      mvn clean package
+    onFailure:
+      - type: Command
+        command: |
+          echo "Handling Failure"
+          echo "Failure successfully handled"
+        timeoutInSeconds: 400
+        runAs: root
+  - type: Command
+    name: "Dockerizer & Test"
+    command: |
+      docker build -t hello-dev .
+      docker run hello-dev
+    onFailure:
+      - type: Command
+        command: |
+          echo "Handling Failure"
+          echo "Failure successfully handled"
+        timeoutInSeconds: 400
+        runAs: root
+
+artifacts:
+  - name: hello-dev-jar
+    type: binary
+    files:
+      - target/hello-dev-1.0-SNAPSHOT.jar
+    ignorePaths: yes
+    baseDirectory: /target
