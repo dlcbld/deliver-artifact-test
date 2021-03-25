@@ -11,7 +11,7 @@ steps:
   - type: Command
     name: "Build Source"
     command: |
-      cat /workspace/script/Step_0.sh
+      cat /workspace/script/Step0.sh
       echo $testEnv
       mvn clean test
       mvn clean package
