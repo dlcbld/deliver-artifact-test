@@ -39,5 +39,3 @@ artifacts:
     type: binary
     files:
       - target/hello-dev-1.0-SNAPSHOT.jar
-    ignorePaths: yes
-    baseDirectory: /target
