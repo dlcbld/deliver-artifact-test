@@ -38,7 +38,7 @@ steps:
 
 artifacts:
   - name: hello-dev-jar
-    type: binary
+    type: BINARY
     files:
       - target/hello-dev-1.0-SNAPSHOT.jar
     ignorePaths: yes
