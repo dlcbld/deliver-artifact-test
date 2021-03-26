@@ -12,9 +12,7 @@ steps:
     name: "Build Source"
     timeoutInSeconds: 400
     command: |
-      cat /workspace/script/Step0.sh
       echo $testEnv
-      mvn clean test
       mvn clean package
     onFailure:
       - type: Command
