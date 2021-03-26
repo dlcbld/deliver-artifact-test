@@ -41,5 +41,7 @@ artifacts:
     type: BINARY
     files:
       - target/hello-dev-1.0-SNAPSHOT.jar
-    ignorePaths: yes
-    baseDirectory: /target
+  - name: hello-dev-image
+    type: DOCKER_IMAGE
+    files:
+      - hello-dev
