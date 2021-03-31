@@ -13,7 +13,8 @@ steps:
     timeoutInSeconds: 400
     command: |
       echo $testEnv
-      mvn clean package
+      cd src/main/java/org/example/
+      javac HelloWorld.java
     onFailure:
       - type: Command
         timeoutInSeconds: 400
