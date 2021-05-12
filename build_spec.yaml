@@ -6,7 +6,10 @@ shell: bash
 env:
   variables:
     "testEnv" : "testValue"
-
+  exported-variables:
+    - minor_version
+    - patch_number
+    
 steps:
   - type: Command
     name: "Build Source"
