@@ -9,6 +9,7 @@ env:
   exported-variables:
     - minor_version
     - patch_number
+    - testEnv
     
 steps:
   - type: Command
