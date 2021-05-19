@@ -17,7 +17,7 @@ steps:
       cat README.md > output1.txt
       cd ${OCI_Source1_PROJECT_DIR}
       cd src/main/java/org/example/
-      echo "commit6" > output.txt
+      echo "commit7" > output.txt
       javac HelloWorld.java
     onFailure:
       - type: Command
