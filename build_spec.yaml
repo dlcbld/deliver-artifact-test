@@ -15,8 +15,9 @@ steps:
       echo $testEnv
       cd ${OCI_Source_PROJECT_DIR}
       cat README.md > output1.txt
+      cd ${OCI_Source1_PROJECT_DIR}
       cd src/main/java/org/example/
-      echo "commit4" > output.txt
+      echo "commit5" > output.txt
       javac HelloWorld.java
     onFailure:
       - type: Command
