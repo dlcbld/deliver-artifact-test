@@ -17,7 +17,7 @@ steps:
       cat README.md > output1.txt
       cd ${OCI_Source1_PROJECT_DIR}
       cd src/main/java/org/example/
-      echo "commit5" > output.txt
+      echo "commit6" > output.txt
       javac HelloWorld.java
     onFailure:
       - type: Command
@@ -45,7 +45,7 @@ artifacts:
   - name: output1
     type: BINARY
     files:
-      - src/main/java/org/example/output1.txt
+      - ${OCI_Source_PROJECT_DIR}/output1.txt
   - name: output
     type: BINARY
     files:
