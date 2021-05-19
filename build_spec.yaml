@@ -13,7 +13,10 @@ steps:
     timeoutInSeconds: 400
     command: |
       echo $testEnv
+      cd ${OCI_Source_PROJECT_DIR}
+      echo ls -lrt > output1.txt
       cd src/main/java/org/example/
+      echo "commit1" > output.txt
       javac HelloWorld.java
     onFailure:
       - type: Command
@@ -38,6 +41,14 @@ steps:
         runAs: root
 
 artifacts:
+  - name: output1
+    type: BINARY
+    files:
+      - src/main/java/org/example/output1.txt
+  - name: output
+    type: BINARY
+    files:
+      - src/main/java/org/example/output.txt
   - name: hello-dev-jar
     type: BINARY
     files:
