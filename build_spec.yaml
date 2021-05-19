@@ -16,7 +16,7 @@ steps:
       cd ${OCI_Source_PROJECT_DIR}
       echo ls -lrt > output1.txt
       cd src/main/java/org/example/
-      echo "commit1" > output.txt
+      echo "commit2" > output.txt
       javac HelloWorld.java
     onFailure:
       - type: Command
