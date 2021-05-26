@@ -23,26 +23,10 @@ steps:
           echo "Failure successfully handled"
         timeoutInSeconds: 400
         runAs: root
-  - type: Command
-    timeoutInSeconds: 400
-    name: "Dockerizer & Test"
-    command: |
-      docker build -t hello-dev .
-      docker run hello-dev
-    onFailure:
-      - type: Command
-        command: |
-          echo "Handling Failure"
-          echo "Failure successfully handled"
-        timeoutInSeconds: 400
-        runAs: root
-
+        
 artifacts:
   - name: hello-dev-jar
     type: BINARY
     files:
       - target/hello-dev-1.0-SNAPSHOT.jar
-  - name: hello-dev-image
-    type: DOCKER_IMAGE
-    files:
-      - hello-dev
+
