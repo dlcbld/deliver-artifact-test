@@ -23,9 +23,3 @@ steps:
           echo "Failure successfully handled"
         timeoutInSeconds: 400
         runAs: root
-        
-artifacts:
-  - name: hello-dev-jar
-    type: BINARY
-    files:
-      - target/hello-dev-1.0-SNAPSHOT.jar
