@@ -43,7 +43,7 @@ artifacts:
   - name: hello-dev-jar
     type: BINARY
     files:
-      - target/hello-dev-1.0-SNAPSHOT.jar
+      - src/main/java/org/example/HelloWorld.class
   - name: hello-dev-image
     type: DOCKER_IMAGE
     files:
