@@ -23,3 +23,9 @@ steps:
           echo "Failure successfully handled"
         timeoutInSeconds: 400
         runAs: root
+        
+artifacts:
+  - name: hello-dev-jar
+    type: BINARY
+    files:
+      - src/main/java/org/example/HelloWorld.class
