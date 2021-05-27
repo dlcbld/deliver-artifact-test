@@ -19,6 +19,7 @@ steps:
       export minor_version=15
       export patch_number=151
       echo $testEnv
+      ls -lart
       cd src/main/java/org/example/
       javac HelloWorld.java
     onFailure:
