@@ -6,10 +6,6 @@ shell: bash
 env:
   variables:
     "testEnv" : "testValue"
-  exportedVariables:
-    - minor_version
-    - patch_number
-    - testEnv
 
 steps:
   - type: Command
@@ -47,14 +43,14 @@ steps:
         runAs: root
 
 artifacts:
-#   - name: output1
-#     type: BINARY
-#     files:
-#       - ${OCI_Source_PROJECT_DIR}/output1.txt
-#   - name: output
-#     type: BINARY
-#     files:
-#       - src/main/java/org/example/output.txt
+  - name: output1
+    type: BINARY
+    files:
+      - ${OCI_Source_PROJECT_DIR}/output1.txt
+  - name: output
+    type: BINARY
+    files:
+      - src/main/java/org/example/output.txt
   - name: hello-dev-jar
     type: BINARY
     files:
