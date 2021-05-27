@@ -6,6 +6,10 @@ shell: bash
 env:
   variables:
     "testEnv" : "testValue"
+  exportedVariables:
+    - minor_version
+    - patch_number
+    - testEnv
 
 steps:
   - type: Command
