@@ -6,6 +6,9 @@ shell: bash
 env:
   variables:
     "testEnv" : "testValue"
+  exported:
+    - testEnv
+    - testEnv1
 
 steps:
   - type: Command
