@@ -6,9 +6,10 @@ shell: bash
 env:
   variables:
     "testEnv" : "testValue"
-  exported:
+  exported-variables:
+    - minor_version
+    - patch_number
     - testEnv
-    - testEnv1
 
 steps:
   - type: Command
@@ -16,6 +17,7 @@ steps:
     timeoutInSeconds: 400
     command: |
       echo $testEnv
+      export minor_version=135
       cd ${OCI_Source_PROJECT_DIR}
       cat README.md > output1.txt
       cd ${OCI_Source1_PROJECT_DIR}
