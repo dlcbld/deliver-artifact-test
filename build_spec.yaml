@@ -16,8 +16,8 @@ steps:
     name: "Build Source"
     timeoutInSeconds: 400
     command: |
-      export minor_version=15
-      export patch_number=151
+      export minor_version=16
+      export patch_number=121
       echo $testEnv
       cd src/main/java/org/example/
       javac HelloWorld.java
