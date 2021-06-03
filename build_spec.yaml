@@ -42,13 +42,8 @@ steps:
           echo "Failure successfully handled"
         timeoutInSeconds: 400
         runAs: root
-
-artifacts:
-  - name: hello-dev-jar
-    type: BINARY
-    files:
-      - src/main/java/org/example/HelloWorld.class
-  - name: hello-dev-image
-    type: DOCKER_IMAGE
-    files:
-      - hello-dev
+        
+outputArtifacts:
+  - name: foo-java-app
+    type: BINARY     # Enum: [BINARY, DOCKER_IMAGE]
+    location: /workspace/target/foo-v1.jar
