@@ -10,7 +10,9 @@ env:
     - minor_version
     - patch_number
     - testEnv
-
+inputArtifacts:
+  - name: hello-dev-jar
+    location: test.class
 steps:
   - type: Command
     name: "Build Source"
