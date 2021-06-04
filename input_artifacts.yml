@@ -7,9 +7,9 @@ env:
   variables:
     "testEnv" : "testValue"
 
-inputArtifacts:
-  - name: hello-dev-jar
-    location: hello123.class
+# inputArtifacts:
+#   - name: hello-dev-jar
+#     location: hello123.class
 
 steps:
   - type: Command
