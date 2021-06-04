@@ -5,7 +5,13 @@ runAs: root
 shell: bash
 env:
   variables:
-    "testEnv" : "testValue"
+    "testEnv" : "testValue1"
+  exportedVariables:
+    - testEnv
+
+inputArtifacts:
+  - name: hello-dev-jar
+    location: hello123.class
 
 steps:
   - type: Command
@@ -19,6 +25,7 @@ steps:
       cd ${OCI_Source1_PROJECT_DIR}
       cd src/main/java/org/example/
       echo "commit7" > output.txt
+      export $testEnv=test
       javac HelloWorld.java
     onFailure:
       - type: Command
@@ -42,20 +49,16 @@ steps:
         timeoutInSeconds: 400
         runAs: root
 
-artifacts:
+outputArtifacts:
   - name: output1
     type: BINARY
-    files:
-      - ${OCI_Source_PROJECT_DIR}/output1.txt
+    location: ${OCI_Source_PROJECT_DIR}/output1.txt
   - name: output
     type: BINARY
-    files:
-      - src/main/java/org/example/output.txt
+    location: src/main/java/org/example/output.txt
   - name: hello-dev-jar
     type: BINARY
-    files:
-      - src/main/java/org/example/HelloWorld.class
+    location: src/main/java/org/example/HelloWorld.class
   - name: hello-dev-image
     type: DOCKER_IMAGE
-    files:
-      - hello-dev
+    location: hello-dev
