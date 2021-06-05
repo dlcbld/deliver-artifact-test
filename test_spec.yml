@@ -8,7 +8,7 @@ env:
     "testEnv" : "testValue"
     
 inputArtifacts:
-  - name:large-file
+  - name: large-file
     location: test.zip
 
 steps:
