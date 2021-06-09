@@ -19,10 +19,8 @@ steps:
     timeoutInSeconds: 400
     command: |
       echo $testEnv
+      echo "commit1" > output1.txt
       export minor_version=135
-      cd ${OCI_Source_PROJECT_DIR}
-      cat README.md > output1.txt
-      cd ${OCI_Source1_PROJECT_DIR}
       cd src/main/java/org/example/
       echo "commit7" > output.txt
       export $testEnv=test
