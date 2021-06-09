@@ -6,8 +6,8 @@ shell: bash
 env:
   variables:
     "testEnv" : "testValue1"
-  exportedVariables:
-    - testEnv
+#   exportedVariables:
+#     - testEnv
 
 # inputArtifacts:
 #   - name: hello-dev-jar
