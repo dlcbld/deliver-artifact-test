@@ -42,7 +42,7 @@ outputArtifacts:
     location: ${OCI_Source_PROJECT_DIR}/output1.txt
   - name: output
     type: BINARY
-    location: src/main/java/org/example/output.txt
+    location: ${OCI_Source_PROJECT_DIR}/src/main/java/org/example/output.txt
   - name: hello-dev-jar
     type: BINARY
-    location: src/main/java/org/example/HelloWorld.class
+    location: ${OCI_Source_PROJECT_DIR}/src/main/java/org/example/HelloWorld.class
