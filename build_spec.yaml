@@ -39,8 +39,8 @@ steps:
     timeoutInSeconds: 400
     name: "Dockerizer & Test"
     command: |
-      docker build -t hello-dev .
-      docker run hello-dev
+      docker build -t iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0 .
+      docker run iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0
     onFailure:
       - type: Command
         command: |
@@ -61,4 +61,4 @@ outputArtifacts:
     location: src/main/java/org/example/HelloWorld.class
   - name: hello-dev-image
     type: DOCKER_IMAGE
-    location: hello-dev
+    location: iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0
