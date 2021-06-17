@@ -58,6 +58,10 @@ outputArtifacts:
     location: src/main/java/org/example/output.txt
   - name: hello-dev-jar
     type: BINARY
+    artifactParams:
+      testKey: testVal
+      testKey1: ${testEnv}
+      testKey2: ${invalidVar}
     location: src/main/java/org/example/HelloWorld.class
 #   - name: hello-dev-image
 #     type: DOCKER_IMAGE
