@@ -20,6 +20,9 @@ steps:
     command: |
       echo $testEnv
       export minor_version=135
+      ls -lart
+      cd /workspace
+      ls -lart
       cd /workspace/Source1
       ls -lart
       git branch
