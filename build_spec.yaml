@@ -31,6 +31,7 @@ steps:
       ls -lart
       git branch
       cat README.md > output1.txt
+      echo "sdfs" >> output1.txt
       cd /workspace/Source
       cd src/main/java/org/example/
       echo "commit7" > output.txt
