@@ -19,6 +19,9 @@ steps:
     timeoutInSeconds: 400
     command: |
       echo $testEnv
+      echo $OCI_PRIMARY_SOURCE_DIR
+      echo $OCI_WORKSPACE_DIR
+      echo $OCI_PRIMARY_SOURCE_DIR
       export minor_version=135
       ls -lart
       echo "hello world"
