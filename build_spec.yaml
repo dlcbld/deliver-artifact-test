@@ -72,6 +72,6 @@ outputArtifacts:
       testKey1: ${testEnv}
       testKey2: ${invalidVar}
     location: src/main/java/org/example/HelloWorld.class
-  - name: hello-dev-image
-    type: DOCKER_IMAGE
-    location: iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0
+#   - name: hello-dev-image
+#     type: DOCKER_IMAGE
+#     location: iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0
