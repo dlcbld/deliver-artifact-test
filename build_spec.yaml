@@ -21,6 +21,7 @@ steps:
       echo $testEnv
       export minor_version=135
       ls -lart
+      echo "hello world"
       cd /workspace
       ls -lart
       cd /workspace/Source1
