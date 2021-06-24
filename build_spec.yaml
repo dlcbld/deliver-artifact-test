@@ -9,9 +9,9 @@ env:
   exportedVariables:
     - testEnv
 
-inputArtifacts:
-  - name: hello-dev-jar
-    location: /workspace/Source1/hello123.class
+# inputArtifacts:
+#   - name: hello-dev-jar
+#     location: /workspace/Source1/hello123.class
 
 steps:
   - type: Command
