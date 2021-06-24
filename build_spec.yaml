@@ -9,9 +9,9 @@ env:
   exportedVariables:
     - testEnv
 
-# inputArtifacts:
-#   - name: hello-dev-jar
-#     location: hello123.class
+inputArtifacts:
+  - name: hello-dev-jar
+    location: /workspace/Source1/hello123.class
 
 steps:
   - type: Command
@@ -20,9 +20,11 @@ steps:
     command: |
       echo $testEnv
       export minor_version=135
-      cd ${OCI_Source_PROJECT_DIR}
+      cd /workspace/Source1
+      ls -lart
+      git branch
       cat README.md > output1.txt
-      cd ${OCI_Source1_PROJECT_DIR}
+      cd /workspace/Source
       cd src/main/java/org/example/
       echo "commit7" > output.txt
       export $testEnv=test
@@ -52,7 +54,7 @@ steps:
 outputArtifacts:
   - name: output1
     type: BINARY
-    location: ${OCI_Source_PROJECT_DIR}/output1.txt
+    location: ${OCI_WORKSPACE_DIR}/Source1/output1.txt
   - name: output
     type: BINARY
     location: src/main/java/org/example/output.txt
