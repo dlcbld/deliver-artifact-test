@@ -1,0 +1,38 @@
+# Build spec with missing version and component
+
+version: 0.1 # missing  component
+timeoutInSeconds: 6000
+runAs: root
+shell: bash
+env:
+  variables:
+    "testEnv" : "testValue1"
+  vaultVariables:
+    "DB_PASSWORD" : ocid1.vaultsecret.oc1.iad.amaaaaaab6fywtyakotbatgncopjp6ju4u4u45rn4ogphwr3ozphfbuzt5ha
+  exportedVariables:
+    - testEnv
+
+inputArtifacts:
+  - name: hello-dev-jar
+    location: /workspace/Source1/hello123.class
+  - name: custom-artifact
+    url: https://devops-beta.us-ashburn-1.oci.oc-test.com/20210630/buildPipelines
+    location: custom-artifact.txt.
+
+outputArtifacts:
+  - name: output1
+    type: BINARY
+    location: ${OCI_WORKSPACE_DIR}/Source1/output1.txt
+  - name: output
+    type: BINARY
+    location: src/main/java/org/example/output.txt
+  - name: hello-dev-jar
+    type: BINARY
+    artifactParams:
+      testKey: testVal
+      testKey1: ${testEnv}
+      testKey2: ${invalidVar}
+    location: src/main/java/org/example/HelloWorld.class
+  - name: hello-dev-image
+    type: DOCKER_IMAGE
+    location: iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0

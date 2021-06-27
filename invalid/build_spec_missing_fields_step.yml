@@ -1,0 +1,79 @@
+# Build spec with problem in steps
+# missing 'Command' in one of the steps
+
+version: 0.1
+component: build
+timeoutInSeconds: 6000
+runAs: root
+shell: bash
+env:
+  variables:
+    "testEnv" : "testValue1"
+  vaultVariables:
+    "DB_PASSWORD" : ocid1.vaultsecret.oc1.iad.amaaaaaab6fywtyakotbatgncopjp6ju4u4u45rn4ogphwr3ozphfbuzt5ha
+  exportedVariables:
+    - testEnv
+
+steps:
+  - type: Command
+    name: "Build Source"
+    timeoutInSeconds: 400   # missing Command here
+    onFailure:
+      - type: Command
+        timeoutInSeconds: 400
+        command: |
+          echo "Handling Failure"
+          echo "Failure successfully handled"
+        runAs: root
+  - type: Command
+    timeoutInSeconds: 400
+    name: "Dockerizer & Test"
+    command: |
+      docker build -t iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0 .
+      docker run iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0
+    onFailure:
+      - type: Command
+        command: |
+          echo "Handling Failure"
+          echo "Failure successfully handled"
+        timeoutInSeconds: 400
+        runAs: root
+  - type: Command
+    timeoutInSeconds: 400
+    name: "trtdtd"
+    command: apt-get ::install -y maven
+  - type: Command
+    timeoutInSeconds: 400
+    name: "Another step"
+    command: |
+      docker build -t iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0 .
+      docker run iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0
+  - type: Command
+    command: |
+      docker build -t iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0 .
+      docker run iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0
+  - type: Command
+    command: |
+      apt-get : install : abc
+  - type: Command
+    command: "apt-get : install : abc"
+    onFailure:
+      - type: Command
+        command: |
+          echo "Handling Failure"
+          echo "Failure successfully handled"
+
+outputArtifacts:
+  - name: output
+    type: BINARY
+    location: src/main/java/org/example/output.txt
+  - name: hello-dev-jar
+    type: BINARY
+    artifactParams:
+      testKey: testVal
+      testKey1: ${testEnv}
+      testKey2: ${invalidVar}
+    location: src/main/java/org/example/HelloWorld.class
+  - name: hello-dev-image
+    type: DOCKER_IMAGE
+    location: iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0

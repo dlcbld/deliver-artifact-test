@@ -1,0 +1,37 @@
+# Build spec with missing steps field
+# missing 'Command' in one of the steps
+
+version: 0.1
+component: build
+timeoutInSeconds: 6000
+runAs: root
+shell: bash
+env:
+  variables:
+    "testEnv" : "testValue1"
+  vaultVariables:
+    "DB_PASSWORD" : ocid1.vaultsecret.oc1.iad.amaaaaaab6fywtyakotbatgncopjp6ju4u4u45rn4ogphwr3ozphfbuzt5ha
+  exportedVariables:
+    - testEnv
+
+inputArtifacts:
+  - name: custom-artifact
+    url: https://devops-beta.us-ashburn-1.oci.oc-test.com/20210630/buildPipelines
+    location: custom-artifact.txt.
+
+# steps missing here
+
+outputArtifacts:
+  - name: output
+    type: BINARY
+    location: src/main/java/org/example/output.txt
+  - name: hello-dev-jar
+    type: BINARY
+    artifactParams:
+      testKey: testVal
+      testKey1: ${testEnv}
+      testKey2: ${invalidVar}
+    location: src/main/java/org/example/HelloWorld.class
+  - name: hello-dev-image
+    type: DOCKER_IMAGE
+    location: iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0

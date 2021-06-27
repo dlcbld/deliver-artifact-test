@@ -1,0 +1,117 @@
+# Build spec with problem in inputArtifacts
+# missing 'name' in one of the output artifacts
+
+version: 0.1
+component: build
+timeoutInSeconds: 6000
+runAs: root
+shell: bash
+env:
+  variables:
+    "testEnv" : "testValue1"
+  vaultVariables:
+    "DB_PASSWORD" : ocid1.vaultsecret.oc1.iad.amaaaaaab6fywtyakotbatgncopjp6ju4u4u45rn4ogphwr3ozphfbuzt5ha
+  exportedVariables:
+    - testEnv
+
+inputArtifacts:
+  - location: /workspace/Source1/hello123.class   # name field missing here
+  - name: custom-artifact
+    url: https://devops-beta.us-ashburn-1.oci.oc-test.com/20210630/buildPipelines
+    location: custom-artifact.txt.
+
+steps:
+  - type: Command
+    name: "Build Source"
+    timeoutInSeconds: 400
+    command: |
+      echo $testEnv
+      echo OCI_STAGE_ID: $OCI_STAGE_ID
+      echo OCI_PIPELINE_ID: $OCI_PIPELINE_ID
+      echo OCI_BUILD_RUN_ID: $OCI_BUILD_RUN_ID
+      echo OCI_TRIGGER_COMMIT_HASH: $OCI_TRIGGER_COMMIT_HASH
+      echo OCI_TRIGGER_SOURCE_BRANCH_NAME: $OCI_TRIGGER_SOURCE_BRANCH_NAME
+      echo OCI_TRIGGER_SOURCE_URL: $OCI_TRIGGER_SOURCE_URL
+      echo OCI_TRIGGER_EVENT_TYPE: $OCI_TRIGGER_EVENT_TYPE
+      echo OCI_PRIMARY_SOURCE_DIR: $OCI_PRIMARY_SOURCE_DIR
+      echo OCI_WORKSPACE_DIR: $OCI_WORKSPACE_DIR
+      echo OCI_BUILD_STAGE_NAME: $OCI_BUILD_STAGE_NAME
+      echo OCI_PRIMARY_SOURCE_NAME: $OCI_PRIMARY_SOURCE_NAME
+      apt-get ::install -y maven
+      export minor_version=135
+      ls -lart
+      echo "hello world"
+      cd /workspace
+      ls -lart
+      cd /workspace/Source1
+      ls -lart
+      git branch
+      cat README.md > output1.txt
+      echo "sdfs" >> output1.txt
+      cd /workspace/Source
+      cd src/main/java/org/example/
+      echo "commit7" > output.txt
+      export $testEnv=test
+      javac HelloWorld.java
+    onFailure:
+      - type: Command
+        timeoutInSeconds: 400
+        command: |
+          echo "Handling Failure"
+          echo "Failure successfully handled"
+        runAs: root
+  - type: Command
+    timeoutInSeconds: 400
+    name: "Dockerizer & Test"
+    command: |
+      docker build -t iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0 .
+      docker run iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0
+    onFailure:
+      - type: Command
+        command: |
+          echo "Handling Failure"
+          echo "Failure successfully handled"
+        timeoutInSeconds: 400
+        runAs: root
+  - type: Command
+    timeoutInSeconds: 400
+    name: "trtdtd"
+    command: apt-get ::install -y maven
+  - type: Command
+    timeoutInSeconds: 400
+    name: "Another step"
+    command: |
+      docker build -t iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0 .
+      docker run iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0
+  - type: Command
+    command: |
+        docker build -t iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0 .
+        docker run iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0
+  - type: Command
+    command: |
+        apt-get : install : abc
+  - type: Command
+    command: "apt-get : install : abc"
+    onFailure:
+      - type: Command
+        command: |
+            echo "Handling Failure"
+            echo "Failure successfully handled"
+
+outputArtifacts:
+  - name: output1
+    type: BINARY
+    location: ${OCI_WORKSPACE_DIR}/Source1/output1.txt
+  - name: output
+    type: BINARY
+    location: src/main/java/org/example/output.txt
+  - name: hello-dev-jar
+    type: BINARY
+    artifactParams:
+      testKey: testVal
+      testKey1: ${testEnv}
+      testKey2: ${invalidVar}
+    location: src/main/java/org/example/HelloWorld.class
+  - name: hello-dev-image
+    type: DOCKER_IMAGE
+    location: iad.ocir.io/id204we8d65n/balaregistry/hello-bala:1.0
