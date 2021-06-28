@@ -70,12 +70,14 @@ steps:
   - type: Command
     timeoutInSeconds: 400
     name: "trtdtd"
-    command: export testEnv=123
+    command: |
+      export testEnv=123
+      echo $testEnv > output1.txt
 
-# outputArtifacts:
-#   - name: output1
-#     type: BINARY
-#     location: ${OCI_WORKSPACE_DIR}/Source1/output1.txt
+outputArtifacts:
+  - name: output1
+    type: BINARY
+    location: output1.txt
 #   - name: output
 #     type: BINARY
 #     location: src/main/java/org/example/output.txt
