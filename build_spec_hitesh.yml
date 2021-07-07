@@ -10,7 +10,7 @@ env:
     - testEnv
     - minor_version
   vaultVariables:
-    "bankPassword": "ocid1.vaultsecret.oc1.iad.amaaaaaa34lgq7aal4ofspnwfuvjl62ck5oxoxl7ktedpknbdaeoaskcl6hq"       # secret-id (in OCI ID format) STORED IN OCI Vault Service
+    "bankPassword": "ocid1.vaultsecret.oc1.iad.amaaaaaa34lgq7aa325l6x7exbl5y7c4pk75aodriekuttjkuqatetll35aq"       # secret-id (in OCI ID format) STORED IN OCI Vault Service
 # inputArtifacts:
 #   - name: hello-dev-jar
 #     location: hello123.class
