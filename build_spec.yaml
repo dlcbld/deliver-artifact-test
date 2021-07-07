@@ -5,28 +5,26 @@ runAs: root
 shell: bash
 env:
   variables:
-    "testEnv" : "testValue"
+    "testEnv" : "testValue1"
+  exportedVariables:
+    - testEnv
+    - minor_version
+  vaultVariables:
+    "bankPassword": "ocid1.vaultsecret.oc1.iad.amaaaaaa34lgq7aa325l6x7exbl5y7c4pk75aodriekuttjkuqatetll35aq"       # secret-id (in OCI ID format) STORED IN OCI Vault Service
+# inputArtifacts:
+#   - name: hello-dev-jar
+#     location: hello123.class
 
 steps:
   - type: Command
     name: "Build Source"
     timeoutInSeconds: 400
     command: |
+      echo "hello world"
+      echo $bankPassword > abc.txt
+      minor_version = 22
       echo $testEnv
-      cd src/main/java/org/example/
-      javac HelloWorld.java
-    onFailure:
-      - type: Command
-        timeoutInSeconds: 400
-        command: |
-          echo "Handling Failure"
-          echo "Failure successfully handled"
-        timeoutInSeconds: 400
-        runAs: root
-        
-artifacts:
-  - name: hello-dev-jar
+outputArtifacts:
+  - name: ABC
     type: BINARY
-    files:
-      - target/hello-dev-1.0-SNAPSHOT.jar
-
+    location: abc.txt
