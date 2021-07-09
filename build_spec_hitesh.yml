@@ -6,6 +6,7 @@ shell: bash
 env:
   variables:
     "testEnv" : "testValue1"
+    "minor_version" : "22"
   exportedVariables:
     - testEnv
     - minor_version
@@ -22,7 +23,7 @@ steps:
     command: |
       echo "hello world"
       echo $bankPassword > abc.txt
-      minor_version = 22
+      echo $minor_version
       echo $testEnv
 outputArtifacts:
   - name: ABC
