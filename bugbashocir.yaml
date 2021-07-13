@@ -61,9 +61,6 @@ steps:
         runAs: root
 
 outputArtifacts:
-  - name: output1
-    type: BINARY
-    location: ${OCI_WORKSPACE_DIR}/Source1/output1.txt
   - name: hello-dev-image
     type: DOCKER_IMAGE
     location: hello-test:1.0
