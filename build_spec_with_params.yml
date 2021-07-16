@@ -8,8 +8,8 @@ env:
     "testEnv" : "testValue1"
     "minor_version" : "22"
     "bp_param3" : "3000"
-    "be_param6" : “6000"
-    "param_4" : “4000"
+    "be_param6" : "6000"
+    "param_4" : "4000"
   exportedVariables:
     - testEnv
     - minor_version
