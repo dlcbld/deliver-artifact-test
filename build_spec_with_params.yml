@@ -16,7 +16,7 @@ env:
     - param_4
     - bp_param3
     - be_param6
-    - pat
+    - vault_var
   vaultVariables:
     "pat": "ocid1.vaultsecret.oc1.iad.amaaaaaa34lgq7aa325l6x7exbl5y7c4pk75aodriekuttjkuqatetll35aq"       # secret-id (in OCI ID format) STORED IN OCI Vault Service
 # inputArtifacts:
@@ -32,6 +32,7 @@ steps:
       echo $pat > abc.txt
       echo $minor_version
       echo $testEnv
+      vault_var=$pat
 outputArtifacts:
   - name: ABC
     type: BINARY
