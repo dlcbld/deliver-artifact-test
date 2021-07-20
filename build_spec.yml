@@ -22,7 +22,6 @@ steps:
     timeoutInSeconds: 400
     command: |
       echo "hello world"
- #     echo $pat > abc.txt
       echo $minor_version
       echo $testEnv > abc.txt
 outputArtifacts:
