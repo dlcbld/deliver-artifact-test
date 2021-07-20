@@ -8,14 +8,14 @@ env:
     "testEnv" : "testValue1"
     "minor_version" : "22"
     "bp_param3" : "3000"
-    "be_param6" : "6000"
+    "br_param6" : "6000"
     "param_4" : "4000"
   exportedVariables:
     - testEnv
     - minor_version
     - param_4
     - bp_param3
-    - be_param6
+    - br_param6
     - vault_var
   vaultVariables:
     "pat": "ocid1.vaultsecret.oc1.iad.amaaaaaa34lgq7aa325l6x7exbl5y7c4pk75aodriekuttjkuqatetll35aq"       # secret-id (in OCI ID format) STORED IN OCI Vault Service
