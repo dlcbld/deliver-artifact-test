@@ -1,1 +1,39 @@
+version: 0.1
+component: build
+timeoutInSeconds: 6000
+runAs: root
+shell: bash
+env:
+  variables:
+    "testEnv" : "testValue1"
+    "minor_version" : "22"
+    "bp_param3" : "3000"
+    "br_param6" : "6000"
+    "param_4" : "4000"
+  exportedVariables:
+    - testEnv
+    - minor_version
+    - param_4
+    - bp_param3
+    - br_param6
+    - vault_var
+  vaultVariables:
+    "pat": "ocid1.vaultsecret.oc1.iad.amaaaaaa34lgq7aa325l6x7exbl5y7c4pk75aodriekuttjkuqatetll35aq"       # secret-id (in OCI ID format) STORED IN OCI Vault Service
+# inputArtifacts:
+#   - name: hello-dev-jar
+#     location: hello123.class
 
+steps:
+  - type: Command
+    name: "Build Source"
+    timeoutInSeconds: 400
+    command: |
+      echo "hello world"
+      echo $pat > abc.txt
+      echo $minor_version
+      echo $testEnv
+      vault_var=$pat
+outputArtifacts:
+  - name: ABC
+    type: BINARY
+    location: abc.txt
