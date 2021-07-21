@@ -61,6 +61,6 @@ steps:
         runAs: root
 
 outputArtifacts:
-  - name: hello-dev-image
+  - name: hello_dev_image
     type: DOCKER_IMAGE
     location: hello-test:1.0
