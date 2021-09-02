@@ -24,6 +24,7 @@ steps:
       echo "hello world"
       echo $minor_version
       echo $testEnv > abc.txt
+      sleep 2m 30s
       python main.py
 outputArtifacts:
   - name: ABC
