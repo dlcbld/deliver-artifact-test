@@ -18,7 +18,7 @@ env:
     - br_param6
     - vault_var
   vaultVariables:
-    "pat": "ocid1.vaultsecret.oc1.iad.amaaaaaap6hqd3qaik2qktuwxxtb4ab367akgxqkqkeopt3ryxsvmvh4hbha"       # secret-id (in OCI ID format) STORED IN OCI Vault Service
+    "pat": "ocid1.vaultsecret.oc1.iad.amaaaaaap6hqd3qaekg2v6kxrzcvu6vqnts7n6otv4mamphnzgvjmttbropq"       # secret-id (in OCI ID format) STORED IN OCI Vault Service
 # inputArtifacts:
 #   - name: hello-dev-jar
 #     location: hello123.class
