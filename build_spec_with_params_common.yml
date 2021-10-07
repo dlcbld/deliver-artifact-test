@@ -16,7 +16,6 @@ env:
     - param_4
     - bp_param3
     - br_param6
-    - vault_var
 # inputArtifacts:
 #   - name: hello-dev-jar
 #     location: hello123.class
