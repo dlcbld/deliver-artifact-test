@@ -21,7 +21,6 @@ steps:
     timeoutInSeconds: 400
     command: |
       echo "hello world" > abc.txt
-#      echo $bankPassword > abc.txt
       minor_version = 22
       echo $testEnv
 outputArtifacts:
