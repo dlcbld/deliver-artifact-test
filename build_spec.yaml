@@ -9,8 +9,8 @@ env:
   exportedVariables:
     - testEnv
     - minor_version
- vaultVariables:
-    "bankPassword": "ocid1.vaultsecret.oc1.iad.amaaaaaa34lgq7aa325l6x7exbl5y7c4pk75aodriekuttjkuqatetll35aq"       # secret-id (in OCI ID format) STORED IN OCI Vault Service
+# vaultVariables:
+#    "bankPassword": "ocid1.vaultsecret.oc1.iad.amaaaaaa34lgq7aa325l6x7exbl5y7c4pk75aodriekuttjkuqatetll35aq"       # secret-id (in OCI ID format) STORED IN OCI Vault Service
 # inputArtifacts:
 #   - name: hello-dev-jar
 #     location: hello123.class
@@ -20,8 +20,8 @@ steps:
     name: "Build Source"
     timeoutInSeconds: 400
     command: |
-      echo "hello world"
-      echo $bankPassword > abc.txt
+      echo "hello world" > abc.txt
+#      echo $bankPassword > abc.txt
       minor_version = 22
       echo $testEnv
 outputArtifacts:
