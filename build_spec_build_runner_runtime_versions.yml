@@ -3,25 +3,32 @@ component: build
 timeoutInSeconds: 6000
 runAs: root
 shell: bash
+env:
+  variables:
+    "runtimefile" : "tempVersions.txt"
+  exportedVariables:
+    - RUNTIME_VERSIONS
 steps:
   - type: Command
     name: "Get Build Runner Runtime Versions"
     timeoutInSeconds: 400
     command: |
-      echo "maven version" && mvn -v && printf "\n\n" && \
-      echo "git version" && git --version && printf "\n\n" && \
-      echo "gradle version" && gradle --version && printf "\n\n" && \
-      echo "fn version" && fn version && printf "\n\n" && \
-      echo "helm version" && helm version && printf "\n\n" && \
-      echo "docker version" && docker --version && printf "\n\n" && \
-      echo "python2 version" && python2 --version && printf "\n\n" && \
-      echo "python3 version" && python3 --version && printf "\n\n" && \
-      echo "python version" && python --version && printf "\n\n" && \
-      echo "oci-cli version" && oci --version && printf "\n\n" && \
-      echo "java version" && java -version && printf "\n\n" && \
-      echo "nodejs version" && node --version && printf "\n\n" && \
-      echo "golang version" && go version && printf "\n\n" && \
-      echo "ruby version" && ruby -v && printf "\n\n" && \
-      echo "rails version" && rails -v && printf "\n\n" && \
-      echo "php version" && php --version && printf "\n\n" && \
-      echo "android sdk version" && ${ANDROID_HOME}/tools/bin/sdkmanager --version && printf "\n\n"
+      echo "maven version" &> {runtimefile} && mvn -v  &>> {runtimefile} && printf "\n\n" &>> {runtimefile} && \
+      echo "git version" &>> {runtimefile} && git --version &>> {runtimefile} && printf "\n\n" &>> {runtimefile} && \
+      echo "gradle version" &>> {runtimefile} && gradle --version &>> {runtimefile} && printf "\n\n" &>> {runtimefile} && \
+      echo "fn version" &>> {runtimefile} && fn version &>> {runtimefile} && printf "\n\n" &>> {runtimefile} && \
+      echo "helm version" &>> {runtimefile} && helm version &>> {runtimefile} && printf "\n\n" &>> {runtimefile} && \
+      echo "docker version" &>> {runtimefile} && docker --version &>> {runtimefile} && printf "\n\n" &>> {runtimefile} && \
+      echo "python2 version" &>> {runtimefile} && python2 --version &>> {runtimefile} && printf "\n\n" &>> {runtimefile} && \
+      echo "python3 version" &>> {runtimefile} && python3 --version &>> {runtimefile} && printf "\n\n" &>> {runtimefile} && \
+      echo "python version" &>> {runtimefile} && python --version &>> {runtimefile} && printf "\n\n" &>> {runtimefile} && \
+      echo "oci-cli version" &>> {runtimefile} && oci --version &>> {runtimefile} && printf "\n\n" &>> {runtimefile} && \
+      echo "java version" &>> {runtimefile} && java -version &>> {runtimefile} && printf "\n\n" &>> {runtimefile} && \
+      echo "nodejs version" &>> {runtimefile} && node --version &>> {runtimefile} && printf "\n\n" &>> {runtimefile} && \
+      echo "golang version" &>> {runtimefile} && go version &>> {runtimefile} && printf "\n\n" &>> {runtimefile} && \
+      echo "ruby version" &>> {runtimefile} && ruby -v &>> {runtimefile} && printf "\n\n" &>> {runtimefile} && \
+      echo "rails version" &>> {runtimefile} && rails -v &>> {runtimefile} && printf "\n\n" &>> {runtimefile} && \
+      echo "php version" &>> {runtimefile} && php --version &>> {runtimefile} && printf "\n\n" &>> {runtimefile} && \
+      echo "android sdk version" &>> {runtimefile} && ${ANDROID_HOME}/tools/bin/sdkmanager --version &>> {runtimefile} && printf "\n\n" &>> {runtimefile}
+      cat ${runtimefile} && export RUNTIME_VERSIONS=`cat ${runtimefile}`
+      rm -f ${runtimefile}
