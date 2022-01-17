@@ -1,0 +1,27 @@
+version: 0.1
+component: build
+timeoutInSeconds: 6000
+runAs: root
+shell: bash
+steps:
+  - type: Command
+    name: "Get Build Runner Runtime Versions"
+    timeoutInSeconds: 400
+    command: |
+      echo "maven version" && mvn -v && printf "\n\n" && \
+      echo "git version" && git --version && printf "\n\n" && \
+      echo "gradle version" && gradle --version && printf "\n\n" && \
+      echo "fn version" && fn version && printf "\n\n" && \
+      echo "helm version" && helm version && printf "\n\n" && \
+      echo "docker version" && docker --version && printf "\n\n" && \
+      echo "python2 version" && python2 --version && printf "\n\n" && \
+      echo "python3 version" && python3 --version && printf "\n\n" && \
+      echo "python version" && python --version && printf "\n\n" && \
+      echo "oci-cli version" && oci --version && printf "\n\n" && \
+      echo "java version" && java -version && printf "\n\n" && \
+      echo "nodejs version" && node --version && printf "\n\n" && \
+      echo "golang version" && go version && printf "\n\n" && \
+      echo "ruby version" && ruby -v && printf "\n\n" && \
+      echo "rails version" && rails -v && printf "\n\n" && \
+      echo "php version" && php --version && printf "\n\n" && \
+      echo "android sdk version" && ${ANDROID_HOME}/tools/bin/sdkmanager --version && printf "\n\n"
