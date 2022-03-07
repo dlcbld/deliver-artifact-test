@@ -25,7 +25,6 @@ steps:
       echo "hello world"
       echo $minor_version
       echo $testEnv > abc.txt
-      echo ${OCI_TRIGGER_COMMIT_HASH}
       trigger=${OCI_TRIGGER_COMMIT_HASH}
 outputArtifacts:
   - name: ABC
