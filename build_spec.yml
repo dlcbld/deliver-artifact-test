@@ -10,6 +10,7 @@ env:
   exportedVariables:
     - testEnv
     - minor_version
+    - trigger
 #  vaultVariables:
 #    "pat": "ocid1.vaultsecret.oc1.iad.amaaaaaa34lgq7aa325l6x7exbl5y7c4pk75aodriekuttjkuqatetll35aq"       # secret-id (in OCI ID format) STORED IN OCI Vault Service
 # inputArtifacts:
@@ -24,6 +25,7 @@ steps:
       echo "hello world"
       echo $minor_version
       echo $testEnv > abc.txt
+      trigger=${OCI_TRIGGER_COMMIT_HASH}
 outputArtifacts:
   - name: ABC
     type: BINARY
