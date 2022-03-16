@@ -26,6 +26,7 @@ steps:
       echo $minor_version
       echo $testEnv > abc.txt
       trigger=${OCI_TRIGGER_COMMIT_HASH}
+      echo $trigger
 outputArtifacts:
   - name: ABC
     type: BINARY
