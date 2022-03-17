@@ -34,7 +34,7 @@ steps:
       cd src/main/java/org/example/
       echo "commit7" > output.txt
       javac HelloWorld.java
-      commitHash=`git log --format="%H" -n 1`
+      commitHash=`git rev-parse HEAD`
       echo commitHash
     onFailure:
       - type: Command
