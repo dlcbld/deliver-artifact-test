@@ -14,6 +14,7 @@ env:
     - param_4
     - bp_param3
     - br_param6
+    - commitHash
 # inputArtifacts:
 #   - name: hello-dev-jar
 #     location: /workspace/Source1/hello123.class
@@ -33,6 +34,8 @@ steps:
       cd src/main/java/org/example/
       echo "commit7" > output.txt
       javac HelloWorld.java
+      commitHash=`git log --format="%H" -n 1`
+      echo commitHash
     onFailure:
       - type: Command
         timeoutInSeconds: 400
