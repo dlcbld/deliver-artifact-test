@@ -24,6 +24,15 @@ env:
 #     location: hello123.class
 
 steps:
+  - type: VulnerabilityAudit        # required
+    name: "Vulnerability Audit Step Preprod Test" # optional 
+    configuration:                   # required
+      buildType: maven               # required
+      pomFilePath: ${OCI_PRIMARY_SOURCE_DIR}/pom.xml # required (Supports parameter substitution)
+      maxPermissibleCvssV2Score: 10.0                # optional (defaults to 0.0)
+      maxPermissibleCvssV3Score: 10.0                # optional (defaults to 0.0)
+    knowledgeBaseId: ocid1.admknowledgebase.oc1.iad.amaaaaaa4725fbqacghfq6hppedd4yxpsqupdux5gjewack63ylu7ldy37ca # required (Supports parameter substitution)
+    vulnerabilityAuditName: VulnerabilityAuditReportPreprodTestTenancy  # optional (Supports parameter substitution), name will be auto generated.
   - type: Command
     name: "Build Source"
     timeoutInSeconds: 400

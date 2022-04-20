@@ -24,6 +24,16 @@ env:
 #     location: hello123.class
 
 steps:
+  - type: VulnerabilityAudit        # required
+    name: "Vulnerability Audit Step Dev Test" # optional 
+    configuration:                   # required
+      buildType: maven               # required
+      pomFilePath: ${OCI_PRIMARY_SOURCE_DIR}/pom.xml # required (Supports parameter substitution)
+      maxPermissibleCvssV2Score: 10.0                # optional (defaults to 0.0)
+      maxPermissibleCvssV3Score: 10.0                # optional (defaults to 0.0)
+    knowledgeBaseId: ocid1.admknowledgebase.oc1.iad.amaaaaaa34lgq7aa3dwesnxct2tfxb6n3juyav3muccq7xg6jbppi7o6hf6q # required (Supports parameter substitution)
+    vulnerabilityAuditCompartmentId: ocid1.compartment.oc1..aaaaaaaaizruowfq7ricy3h2tdjbujinoxq5bu7pfef36ccf5jogb6la2a5a # optional (Supports parameter substitution) defaults to KB compartmentId
+    vulnerabilityAuditName: VulnerabilityAuditReportDevTestTenancy  # optional (Supports parameter substitution), name will be auto generated.
   - type: Command
     name: "Build Source"
     timeoutInSeconds: 400
