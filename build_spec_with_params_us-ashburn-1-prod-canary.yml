@@ -1,0 +1,44 @@
+version: 0.1
+component: build
+timeoutInSeconds: 6000
+runAs: root
+shell: bash
+env:
+  variables:
+    "testEnv" : "testValue1"
+    "minor_version" : "22"
+    "bp_param3" : "3000"
+    "br_param6" : "6000"
+    "param_4" : "4000"
+  exportedVariables:
+    - testEnv
+    - minor_version
+    - param_4
+    - bp_param3
+    - br_param6
+# inputArtifacts:
+#   - name: hello-dev-jar
+#     location: hello123.class
+
+steps:
+  - type: VulnerabilityAudit        # required
+    name: "Vulnerability Audit Step Prod Canary" # optional
+    configuration:                   # required
+      buildType: maven               # required
+      pomFilePath: ${OCI_PRIMARY_SOURCE_DIR}/pom.xml # required (Supports parameter substitution)
+      maxPermissibleCvssV2Score: 10.0                # optional (defaults to 0.0)
+      maxPermissibleCvssV3Score: 10.0                # optional (defaults to 0.0)
+    knowledgeBaseId: ocid1.admknowledgebase.oc1.iad.amaaaaaa37rb4miaayotcu7xknu64c5nfplyp63foyu5cen6c5zwk7whrjbq # required (Supports parameter substitution)
+    vulnerabilityAuditName: VulnerabilityAuditReportProdCanaryTenancy  # optional (Supports parameter substitution), name will be auto generated.
+  - type: Command
+    name: "Build Source"
+    timeoutInSeconds: 400
+    command: |
+      echo "hello world"
+      echo "test text" > abc.txt
+      echo $minor_version
+      echo $testEnv
+outputArtifacts:
+  - name: ABC
+    type: BINARY
+    location: abc.txt
