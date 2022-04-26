@@ -32,6 +32,7 @@ steps:
       maxPermissibleCvssV2Score: 10.0                # optional (defaults to 0.0)
       maxPermissibleCvssV3Score: 10.0                # optional (defaults to 0.0)
     knowledgeBaseId: ${PIPELINE_PARAM_KB_OCID_REGIONAL} # required (Supports parameter substitution)
+    vulnerabilityAuditCompartmentId: ${PARAM_ADM_COMPARTMENT_ID} # optional (Supports parameter substitution) defaults to KB compartmentId
     vulnerabilityAuditName: VulnerabilityAuditReportPreprodTestTenancy  # optional (Supports parameter substitution), name will be auto generated.
   - type: Command
     name: "Build Source"
