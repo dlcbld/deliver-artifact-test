@@ -24,6 +24,15 @@ env:
 #     location: hello123.class
 
 steps:
+  - type: VulnerabilityAudit        # required
+    name: "Vulnerability Audit Step" # optional
+    configuration:                   # required
+      buildType: maven               # required
+      pomFilePath: ${OCI_PRIMARY_SOURCE_DIR}/pom.xml # required (Supports parameter substitution)
+      maxPermissibleCvssV2Score: 10.0                # optional (defaults to 0.0)
+      maxPermissibleCvssV3Score: 10.0                # optional (defaults to 0.0)
+    knowledgeBaseId: ${PIPELINE_PARAM_KB_OCID_REGIONAL} # required (Supports parameter substitution)
+    vulnerabilityAuditName: VulnerabilityAuditReport
   - type: Command
     name: "Build Source"
     timeoutInSeconds: 400
