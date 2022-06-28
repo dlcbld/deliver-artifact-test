@@ -30,5 +30,6 @@ steps:
       echo "rails version" &>> ${runtimefile} && rails -v &>> ${runtimefile} && printf "\n\n" &>> ${runtimefile} && \
       echo "php version" &>> ${runtimefile} && php --version &>> ${runtimefile} && printf "\n\n" &>> ${runtimefile} && \
       echo "android sdk version" &>> ${runtimefile} && ${ANDROID_HOME}/tools/bin/sdkmanager --version &>> ${runtimefile} && printf "\n\n" &>> ${runtimefile}
+      terraform version &>> ${runtimefile} && printf "\n\n" &>> ${runtimefile}
       cat ${runtimefile} && export RUNTIME_VERSIONS=`cat ${runtimefile}`
       rm -f ${runtimefile}
