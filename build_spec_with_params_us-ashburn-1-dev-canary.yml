@@ -17,8 +17,10 @@ env:
     - bp_param3
     - br_param6
     - vault_var
+    - vault_var_test
   vaultVariables:
     "pat": "ocid1.vaultsecret.oc1.iad.amaaaaaap6hqd3qaekg2v6kxrzcvu6vqnts7n6otv4mamphnzgvjmttbropq"       # secret-id (in OCI ID format) STORED IN OCI Vault Service
+    "vaultVarTest": "ocid1.vaultsecret.oc1.iad.amaaaaaap6hqd3qabrqrfwrelpdxc2q56k7q4g4vahazaj6vmahfvbagzqqq"       # secret-id (in OCI ID format) STORED IN OCI Vault Service
 # inputArtifacts:
 #   - name: hello-dev-jar
 #     location: hello123.class
@@ -42,7 +44,9 @@ steps:
       echo $pat > abc.txt
       echo $minor_version
       echo $testEnv
+       # TODO: get rid of the below assignment.
       vault_var=$pat
+      vault_var_test=$vaultVarTest
 outputArtifacts:
   - name: ABC
     type: BINARY
