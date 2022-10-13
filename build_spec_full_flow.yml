@@ -6,6 +6,24 @@ shell: bash
 steps:
   - type: Command
     timeoutInSeconds: 600
+    name: "Printing Predefined variables"
+    command: |
+      echo ${OCI_STAGE_ID}
+      echo ${OCI_BUILD_STAGE_NAME}
+      echo ${OCI_PIPELINE_ID}
+      echo ${OCI_BUILD_RUN_ID}
+      echo ${OCI_BUILD_RUN_NUMBER}
+      echo ${OCI_TRIGGER_SOURCE_URL}
+      echo ${OCI_TRIGGER_COMMIT_HASH}
+      echo ${OCI_TRIGGER_SOURCE_BRANCH_NAME}
+      echo ${OCI_WORKSPACE_DIR}
+      echo ${OCI_PRIMARY_SOURCE_NAME}
+      echo ${OCI_PRIMARY_SOURCE_DIR}
+      echo ${OCI_PRIMARY_SOURCE_SOURCE_URL}
+      echo ${OCI_PRIMARY_SOURCE_SOURCE_BRANCH_NAME}
+      echo ${OCI_PRIMARY_SOURCE_COMMIT_HASH}
+  - type: Command
+    timeoutInSeconds: 600
     name: "Building HelloWorld"
     command: |
       cd src/main/java/org/example/
