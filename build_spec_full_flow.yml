@@ -13,3 +13,4 @@ steps:
       - type: Command
         command: |
           echo "RUNNING ON FAILURE"
+        timeoutInSeconds: 400
