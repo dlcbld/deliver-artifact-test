@@ -8,8 +8,4 @@ steps:
   - type: Command
     name: "Test fail"
     command: |
-      exit 1
-    onFailure:
-      - type: Command
-        command: |
-          echo "RUNNING ON FAILURE"
+      docker ps
