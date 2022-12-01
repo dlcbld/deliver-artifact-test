@@ -11,6 +11,8 @@ steps:
     command: |
       docker pull owasp/zap2docker-stable:2.11.1
       docker run -v $(pwd):/zap/wrk/:rw --user root owasp/zap2docker-stable:2.11.1 zap-baseline.py -t https://129.158.218.116 -g gen.conf -d -r report.html
+      ls -al
+      cat report.html
 outputArtifacts:
   - name: zap-report
     type: BINARY 
