@@ -8,4 +8,9 @@ steps:
   - type: Command
     name: "Test fail"
     command: |
-      docker ps
+      echo SHABBA $OCI_PRIMARY_SOURCE_URL
+      exit 1
+    onFailure:
+      - type: Command
+        command: |
+          echo "RUNNING ON FAILURE"
