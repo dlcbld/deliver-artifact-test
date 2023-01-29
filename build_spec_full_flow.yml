@@ -21,7 +21,7 @@ steps:
     name: "Create Docker Artifact"
     command: |
       echo "test to see if it takes"
-      docker build --network host -t hello-test:1.0 .
+      docker build -t hello-test:1.0 .
     onFailure:
       - type: Command
         command: |
