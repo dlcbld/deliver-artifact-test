@@ -20,6 +20,7 @@ steps:
     timeoutInSeconds: 600
     name: "Create Docker Artifact"
     command: |
+      echo "test to see if it takes"
       docker build --network host -t hello-test:1.0 .
     onFailure:
       - type: Command
