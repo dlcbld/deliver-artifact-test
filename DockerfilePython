@@ -1,4 +1,6 @@
 FROM iad.ocir.io/axg3zewhl95k/do-not-delete-python-39-slim-with-apt:1.0
+RUN apt-get update
+RUN apt-get install wget -y
 RUN apt-get install wget -y
 RUN apt-get install curl -y
 RUN wget https://gitlab.com/dlcbld/deliver-artifact-test/-/blob/build-deliver-trigger-test/build_spec_ocir.yml
