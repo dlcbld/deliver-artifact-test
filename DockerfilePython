@@ -1,5 +1,5 @@
 FROM iad.ocir.io/axg3zewhl95k/do-not-delete-python-39-slim-with-apt:1.0
-apt-get update -y
+RUN apt-get update -y
 RUN apt-get install wget -y
 RUN apt-get install wget -y
 RUN apt-get install curl -y
