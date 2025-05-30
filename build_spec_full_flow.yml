@@ -3,7 +3,30 @@ component: build
 timeoutInSeconds: 6600
 runAs: root
 shell: bash
+env:
+  variables:
+    "testEnv" : "testValue1"
+    "minor_version" : "24"
+  exportedVariables:
+    - testEnv
+    - minor_version
 steps:
+ - type: Command
+    name: "Variables and curl"
+    timeoutInSeconds: 400
+    command: |
+      echo "hello world"
+      echo $testEnv
+      echo $minor_version
+      curl -L -o README.md https://raw.githubusercontent.com/torvalds/linux/master/README
+      cat README.md
+   - type: Command
+    name: "Variables"
+    timeoutInSeconds: 400
+    command: |
+      echo "hello world"
+      echo $testEnv
+      echo $minor_version
   - type: Command
     timeoutInSeconds: 600
     name: "Building HelloWorld"
