@@ -6,6 +6,11 @@ shell: bash
 steps:
   - type: Command
     timeoutInSeconds: 600
+    name: "Creating Generic Artifact"
+    command: |
+      echo "Hello World" > abc.txt
+  - type: Command
+    timeoutInSeconds: 600
     name: "Building HelloWorld"
     command: |
       mvn clean install
@@ -15,48 +20,10 @@ steps:
           echo "Building HelloWorld failed :("
         timeoutInSeconds: 400
         runAs: root
-  - type: Command
-    timeoutInSeconds: 600
-    name: "Create Docker Artifact"
-    command: |
-      docker build -t hello-test:1.0 .
-    onFailure:
-      - type: Command
-        command: |
-          echo "Docker image could not be created :("
-        timeoutInSeconds: 400
-        runAs: root
-  - type: Command
-    timeoutInSeconds: 1200
-    name: "Create Python Flask Docker Image"
-    command: |
-      docker build -f DockerfilePython -t python-flask-example:1.0 .
-    onFailure:
-      - type: Command
-        command: |
-          echo "Python Flask Docker image could not be created :("
-        timeoutInSeconds: 400
-        runAs: root
-  - type: Command
-    timeoutInSeconds: 600
-    name: "Create Mvn Build Docker Image"
-    command: |
-      docker build -f DockerfileOCIR -t mvn-ocir-example:1.0 .
-    onFailure:
-      - type: Command
-        command: |
-          echo "Mvn Build Docker Image could not be created :("
-        timeoutInSeconds: 400
-        runAs: root
-  - type: Command
-    timeoutInSeconds: 600
-    name: "Creating Generic Artifact"
-    command: |
-      echo "Hello World" > abc.txt
 outputArtifacts:
-  - name: hello_dev_image
-    type: DOCKER_IMAGE
-    location: hello-test:1.0
   - name: ABC
     type: BINARY
     location: abc.txt
+  - name: hello_world_jar
+    type: BINARY
+    location: target/hello-dev-1.0-SNAPSHOT.jar
