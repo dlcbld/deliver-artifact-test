@@ -8,8 +8,7 @@ steps:
     timeoutInSeconds: 600
     name: "Building HelloWorld"
     command: |
-      cd src/main/java/org/example/
-      javac HelloWorld.java
+      mvn clean install
     onFailure:
       - type: Command
         command: |
