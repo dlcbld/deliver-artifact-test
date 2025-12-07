@@ -1,0 +1,82 @@
+version: 0.1
+component: build
+timeoutInSeconds: 6000
+runAs: root
+shell: bash
+env:
+  variables:
+    "testEnv" : "testValue"
+    "testEnv1": "testValue1"
+  vaultVariables:
+    "secretKey": ${SECRET_ID}       # secret-id from pipeline parameter
+  exportedVariables:
+    - TestVar
+    - TestVar2
+inputArtifacts:  
+  - name: test-file-change-target-name
+    type: URL
+    url: https://objectstorage.us-phoenix-1.oraclecloud.com/p/u5FIhbK4GycguP8fxMqFh3URVrYWKr8-P97G6qHzy-VncUgH7pgr9DOovt1vIcUh/n/idllbnfszw6v/b/test/o/
+    location: ${OCI_WORKSPACE_DIR}/my-files/downloaded-file.txt
+steps:
+  - type: Command
+    timeoutInSeconds: 600
+    name: "Building HelloWorld"
+    command: |
+      echo "SecretId "$secretKey
+      RENAMED_FILE_MD5=`md5sum ${OCI_WORKSPACE_DIR}/my-files/downloaded-file.txt`
+      echo "MD5 of downloaded file with changed name: $RENAMED_FILE_MD5"
+      echo "Last 10 lines of the downloaded (renamed) file:"
+      tail -n10 ${OCI_WORKSPACE_DIR}/my-files/downloaded-file.txt
+      cd src/main/java/org/example/
+      javac HelloWorld.java
+    onFailure:
+      - type: Command
+        command: |
+          echo "Building HelloWorld failed :("
+        timeoutInSeconds: 400
+        runAs: root
+  - type: Command
+    timeoutInSeconds: 600
+    name: "Create Docker Artifact"
+    command: |
+      docker build -t hello-test:1.0 .
+    onFailure:
+      - type: Command
+        command: |
+          echo "Docker image could not be created :("
+        timeoutInSeconds: 400
+        runAs: root
+  - type: Command
+    timeoutInSeconds: 600
+    name: "Create Python Flask Docker Image"
+    command: |
+      docker build -f DockerfilePython -t python-flask-example:1.0 .
+    onFailure:
+      - type: Command
+        command: |
+          echo "Python Flask Docker image could not be created :("
+        timeoutInSeconds: 400
+        runAs: root
+  - type: Command
+    timeoutInSeconds: 600
+    name: "Create Mvn Build Docker Image"
+    command: |
+      docker build -f DockerfileOCIR -t mvn-ocir-example:1.0 .
+    onFailure:
+      - type: Command
+        command: |
+          echo "Mvn Build Docker Image could not be created :("
+        timeoutInSeconds: 400
+        runAs: root
+  - type: Command
+    timeoutInSeconds: 600
+    name: "Creating Generic Artifact"
+    command: |
+      echo "Hello World" > abc.txt
+outputArtifacts:
+  - name: hello_dev_image
+    type: DOCKER_IMAGE
+    location: hello-test:1.0
+  - name: ABC
+    type: BINARY
+    location: abc.txt
