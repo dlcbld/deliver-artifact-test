@@ -39,7 +39,7 @@ steps:
         timeoutInSeconds: 400
         runAs: root
   - type: Command
-    timeoutInSeconds: 600
+    timeoutInSeconds: 700
     name: "Create Mvn Build Docker Image"
     command: |
       docker build -f DockerfileOCIR -t mvn-ocir-example:1.0 .
